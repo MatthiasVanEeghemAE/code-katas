@@ -3,7 +3,6 @@ package com.ae.codekatas;
 import javafx.util.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 public class StringCalculatorTest {
     @Test
@@ -42,7 +41,14 @@ public class StringCalculatorTest {
         Assertions.assertThrows(RuntimeException.class, () -> StringCalculator.add("-1,2"), "Should throw an exception");
     }
 
-    // TODO: Moest ik meer tijd hebben, checken op de message effectief + een test met meerdere nummers
+    @Test
+    public void negativeNumbersThrowsExceptionAndArePresentInTheMessage() {
+        try {
+            StringCalculator.add("-1,-2,3,4");
+        } catch(RuntimeException e) {
+            Assertions.assertEquals("Encountered the following negatives: [-1, -2]", e.getMessage());
+        }
+    }
 
     @Test
     public void numbersAbove1000AreIgnored() {
