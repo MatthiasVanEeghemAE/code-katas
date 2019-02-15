@@ -6,7 +6,14 @@ public class StringCalculator {
     }
 
     public static int add(String numbers) {
-        return 0;
+        int sum = 0;
+
+        for(String numberAsString : numbers.split(",")) {
+            int number = Integer.parseInt(numberAsString);
+            sum += number;
+        }
+
+        return sum;
     }
 }
 

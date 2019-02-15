@@ -14,5 +14,10 @@ public class StringCalculatorTest {
     public void addOneNumber() {
         Assertions.assertEquals(1, StringCalculator.add("1"));
     }
+
+    @Test
+    public void addMultipleNumbers() {
+        Assertions.assertEquals(348, StringCalculator.add("1,2,345"));
+    }
 }
 
