@@ -35,5 +35,10 @@ public class RomanNumeralsTest {
 	public void simpleSubstractionTest() {
 		Assertions.assertEquals("IX", converter.toRomanNumeral(9));
 	}
+
+	@Test
+	public void complexNumberTest() {
+		Assertions.assertEquals("MMXIX", converter.toRomanNumeral(2019));
+	}
 }
 
