@@ -6,6 +6,9 @@ public class RomanNumerals {
 	}
 
 	public static String toRomananNumeral(int decimal) {
+		if (decimal == 1)
+			return "I";
+
 		return "";
 	}
 }
