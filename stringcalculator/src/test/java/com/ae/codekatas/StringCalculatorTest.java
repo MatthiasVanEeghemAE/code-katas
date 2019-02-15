@@ -1,9 +1,8 @@
 package com.ae.codekatas;
 
+import javafx.util.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 public class StringCalculatorTest {
 
@@ -29,9 +28,13 @@ public class StringCalculatorTest {
 
     @Test
     public void customDelimiterTest() {
-        Optional<String> customDelimiter = StringCalculator.getCustomDelimiter("//;\n1;2");
-        Assertions.assertTrue(customDelimiter.isPresent());
-        Assertions.assertEquals(";", customDelimiter.get());
+        Pair<String, String> customDelimiter = StringCalculator.getCustomDelimiterAndRest("//;\n1;2");
+        Assertions.assertEquals(";", customDelimiter.getKey());
+    }
+
+    @Test
+    public void addMultipleNumbersWithCustomDelimiterLineTest() {
+        Assertions.assertEquals(3, StringCalculator.add("//;\n1;2"));
     }
 }
 
