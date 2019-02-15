@@ -3,36 +3,33 @@ package com.ae.codekatas;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
-    public static void main(String[] args) {
-    }
-
-    public static int add(String numbers) {
-        if (numbers.length() == 0)
+    public static int add(String inputString) {
+        if (inputString.length() == 0)
             return 0;
 
-        Pair<String, String> customDelimiterAndRest = getCustomDelimiterAndRest(numbers);
+        Pair<String, String> customDelimiterAndRest = getCustomDelimiterAndRest(inputString);
         String customDelimiter = customDelimiterAndRest.getKey();
-        String input = customDelimiterAndRest.getValue();
-        String regex = ",|\\n";
+        String defaultDelimiters = ",|\\n";
 
         if (customDelimiter.length() > 0) {
-            regex += "|" + customDelimiter;
+            defaultDelimiters += "|" + customDelimiter;
         }
 
-        return doAdditionWithRegex(input, regex);
+        List<Integer> numbers = getNumbersFromInputUsingRegex(customDelimiterAndRest.getValue(), defaultDelimiters);
+        return addNumbers(numbers);
     }
 
-    private static int doAdditionWithRegex(String input, String regex) {
+    private static int addNumbers(List<Integer> numbers) {
         List<Integer> negativeNumbers = new ArrayList<>();
         int sum = 0;
 
-        for (String numberAsString : input.split(regex)) {
-            int number = Integer.parseInt(numberAsString);
-
+        for (Integer number : numbers) {
             if (number < 0) {
                 negativeNumbers.add(number);
             } else if (number <= 1000) {
@@ -45,6 +42,12 @@ public class StringCalculator {
         }
 
         return sum;
+    }
+
+    private static List<Integer> getNumbersFromInputUsingRegex(String input, String regex) {
+        return Arrays.stream(input.split(regex))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public static Pair<String, String> getCustomDelimiterAndRest(String input) {
