@@ -2,6 +2,9 @@ package com.ae.codekatas;
 
 import javafx.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
     public static void main(String[] args) {
@@ -24,11 +27,21 @@ public class StringCalculator {
     }
 
     private static int doAdditionWithRegex(String input, String regex) {
+        List<Integer> negativeNumbers = new ArrayList<>();
         int sum = 0;
 
-        for(String numberAsString : input.split(regex)) {
+        for (String numberAsString : input.split(regex)) {
             int number = Integer.parseInt(numberAsString);
-            sum += number;
+
+            if (number < 0) {
+                negativeNumbers.add(number);
+            } else if (number <= 1000) {
+                sum += number;
+            }
+        }
+
+        if (!negativeNumbers.isEmpty()) {
+            throw new RuntimeException("Encountered the following negatives: " + negativeNumbers);
         }
 
         return sum;

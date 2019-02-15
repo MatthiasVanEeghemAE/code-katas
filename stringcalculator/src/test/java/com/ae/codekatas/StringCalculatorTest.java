@@ -3,9 +3,9 @@ package com.ae.codekatas;
 import javafx.util.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 public class StringCalculatorTest {
-
     @Test
     public void addEmptyStringTest() {
         Assertions.assertEquals(0, StringCalculator.add(""));
@@ -36,5 +36,18 @@ public class StringCalculatorTest {
     public void addMultipleNumbersWithCustomDelimiterLineTest() {
         Assertions.assertEquals(3, StringCalculator.add("//;\n1;2"));
     }
+
+    @Test
+    public void negativeNumberThrowsException() {
+        Assertions.assertThrows(RuntimeException.class, () -> StringCalculator.add("-1,2"), "Should throw an exception");
+    }
+
+    // TODO: Moest ik meer tijd hebben, checken op de message effectief + een test met meerdere nummers
+
+    @Test
+    public void numbersAbove1000AreIgnored() {
+        Assertions.assertEquals(3, StringCalculator.add("1,1001,2"));
+    }
+
 }
 
