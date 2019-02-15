@@ -21,15 +21,19 @@ public class RomanNumeralsTest {
 	}
 
 	@Test
-	public void decimalTwoThreeAndFourAreCorrect() {
+	public void simpleAdditionTest() {
 		Assertions.assertEquals("II", converter.toRomanNumeral(2));
 		Assertions.assertEquals("III", converter.toRomanNumeral(3));
-		Assertions.assertEquals("IV", converter.toRomanNumeral(4));
 	}
 
 	@Test
-	public void twoLetters15Works() {
+	public void twoDigitDecimalTest() {
 		Assertions.assertEquals("XV", converter.toRomanNumeral(15));
+	}
+
+	@Test
+	public void simpleSubstractionTest() {
+		Assertions.assertEquals("IX", converter.toRomanNumeral(9));
 	}
 }
 
