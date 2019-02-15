@@ -41,7 +41,7 @@ public class StringCalculator {
         }
 
         if (!negativeNumbers.isEmpty()) {
-            throw new RuntimeException("Encountered the following negatives: " + negativeNumbers);
+            throw new NegativeNumberException("Encountered the following negatives: " + negativeNumbers);
         }
 
         return sum;

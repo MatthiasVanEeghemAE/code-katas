@@ -38,14 +38,14 @@ public class StringCalculatorTest {
 
     @Test
     public void negativeNumberThrowsException() {
-        Assertions.assertThrows(RuntimeException.class, () -> StringCalculator.add("-1,2"), "Should throw an exception");
+        Assertions.assertThrows(NegativeNumberException.class, () -> StringCalculator.add("-1,2"), "Should throw an exception");
     }
 
     @Test
     public void negativeNumbersThrowsExceptionAndArePresentInTheMessage() {
         try {
             StringCalculator.add("-1,-2,3,4");
-        } catch(RuntimeException e) {
+        } catch(NegativeNumberException e) {
             Assertions.assertEquals("Encountered the following negatives: [-1, -2]", e.getMessage());
         }
     }
